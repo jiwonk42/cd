@@ -1,0 +1,11 @@
+<ul>
+
+  @foreach(var cd in Model)
+  {
+    {
+      <li><a href="/artist-list/@cd.GetArtist()">@cd.GetArtist()</a></li>
+    }
+  }
+
+</ul>
+<a href="/">Go to home</a>

@@ -1,0 +1,10 @@
+@Model[0].GetArtist()
+
+<ul>
+  @foreach(var cd in Model)
+  {
+    <li> @cd.GetAlbum() </li>
+  }
+</ul>
+
+<a href="/">Go back</a>
