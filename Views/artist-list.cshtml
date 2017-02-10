@@ -1,9 +1,9 @@
 <ul>
 
-  @foreach(var cd in Model)
+  @foreach(var artist in Model)
   {
     {
-      <li><a href="/artist-list/@cd.GetArtist()">@cd.GetArtist()</a></li>
+      <li><a href="/artist-list/@artist.GetId()">@artist.GetName()</a></li>
     }
   }
 

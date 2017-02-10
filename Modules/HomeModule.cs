@@ -8,12 +8,19 @@ namespace CdOrganizer
   {
     public HomeModule()
     {
-      Get["/"] = _ => View["index.cshtml", Cd.GetAll()];
+      Get["/"] = _ => View["index.cshtml", Artist.GetAll()];
 
       Post["/add-cd"] = _ =>
       {
-        Cd newCd = new Cd(Request.Form["artist"], Request.Form["album"]);
-        return View["cd-confirm.cshtml", newCd];
+        if(Artist.GetByName(Request.Form["name"]) != null)
+        {
+          return View["alreadyAdded.cshtml"];
+        }
+        else
+        {
+          Artist newArtist = new Artist(Request.Form["name"], Request.Form["genre"]);
+          return View["artist-confirm.cshtml", newArtist];
+        }
       };
 
       Get["/cd/{id}"] = parameters => {
@@ -22,15 +29,8 @@ namespace CdOrganizer
       };
 
       Get["/artist-list"] = _ => {
-        Cd.SetArtistList();
-        return View["artist-list.cshtml", Cd.GetArtistList()];
-      };
-
-      Get["/artist-list/{artistName}"] = parameters =>
-      {
-        string artistNameInput = parameters.artistName;
-        Cd.SetAlbumList(artistNameInput);
-        return View["single-artist.cshtml", Cd.GetAlbumList()];
+        List<Artist> allArtists = Artist.GetAll();
+        return View["artist-list.cshtml", allArtists];
       };
     }
   }

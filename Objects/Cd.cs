@@ -12,6 +12,7 @@ namespace CdOrganizer.Objects
     private static List<Cd> _albumCheck = new List<Cd>{};
     private static List<Cd> _artistCheck = new List<Cd>{};
 
+
     public Cd(string artist, string album)
     {
       _artist = artist;
@@ -19,6 +20,26 @@ namespace CdOrganizer.Objects
       _instances.Add(this);
       _id = _instances.Count;
     }
+
+    // public static void SetArtistList()
+    // {
+    //   foreach(Cd cd in _instances)
+    //   {
+    //     for(int index = 0; index<_artistCheck.Count; index++)
+    //     {
+    //       if(cd.GetName() != _instances[index].GetName())
+    //       {
+    //
+    //       }
+    //       else
+    //       {
+    //         _
+    //       }
+    //     }
+    //   }
+    // }
+
+
 
     public void SetArtist(string artist)
     {
@@ -49,27 +70,6 @@ namespace CdOrganizer.Objects
       return _id;
     }
 
-    public static void SetArtistList()
-    {
-      int count = 1;
-      foreach(Cd cd in _instances)
-      {
-        _artistCheck.Add(cd);
-        for(int index = count; index < _artistCheck.Count; index++)
-        {
-          if(cd.GetArtist() == _artistCheck[index].GetArtist())
-          {
-            _artistCheck.RemoveAt(index);
-          }
-        }
-        count++;
-      }
-    }
-
-    public static List<Cd> GetArtistList()
-    {
-      return _artistCheck;
-    }
 
     public static Cd GetCd(int cdId)
     {
